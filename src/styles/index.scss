@@ -1,7 +1,6 @@
-@import "~bootstrap/scss/bootstrap.scss";
+@import '~bootstrap/scss/bootstrap.scss';
 
 /* 
-
     You can write your own styles here...
     
     
@@ -9,8 +8,20 @@
     other sylesheets into your bunde as well, e.j:
     
     import 'relative/path/to/stylesheet.scss';
-
 */
-body {  
-    background: blue;
-} 
+
+.LargeCounter { 
+    text-align: center;
+    background:blue;
+    
+}
+
+.LargeCounter div { 
+    display: inline-block;  
+    font-size: 100px; 
+    background: black;  
+    color: white; 
+    padding: 10px; 
+    text-align: center; 
+    margin:3px;
+}

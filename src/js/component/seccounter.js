@@ -1,197 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
+
+//include bootstrap npm library into the bundle
 import "bootstrap";
+
+//include your index.scss file into the bundle
 import "../styles/index.scss";
 
-export const Seccounter = () => {
-	const [seconds, setSeconds] = useState(0);
-	useEffect(() => { 
-		const interval = setInterval(() => {
-			setSeconds(seconds => seconds + 1);
-		}, 1000);
-		return () => clearInterval(interval);
-	}, []);
-
-	let counter = ("" + seconds).split("");
-
-	if (counter.length === 1) {
-		return (
-			<div className="container mt-5">
-				<div className="card-deck">
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<div className="card-body">
-							<i
-								className="far fa-clock mt-5"
-								style={{ fontSize: "10rem" }}
-							/>
-						</div>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							0
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							0
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							0
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							{counter[0]}
-						</h2>
-					</div>
-				</div>
+function SecCounter(props) {
+	return (
+		<div className="LargeCounter">
+			<div className="calendar">
+				<i className="far fa-clock" />
 			</div>
-		);
-	} else if (counter.length === 2) {
-		return (
-			<div className="container mt-5">
-				<div className="card-deck">
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<div className="card-body">
-							<i
-								className="far fa-clock mt-5"
-								style={{ fontSize: "10rem" }}
-							/>
-						</div>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							0
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							0
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							{counter[0]}
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							{counter[1]}
-						</h2>
-					</div>
-				</div>
-			</div>
-		);
-	} else if (counter.length === 3) {
-		return (
-			<div className="container mt-5">
-				<div className="card-deck">
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<div className="card-body">
-							<i
-								className="far fa-clock mt-5"
-								style={{ fontSize: "10rem" }}
-							/>
-						</div>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							0
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							{counter[0]}
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							{counter[1]}
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							{counter[2]}
-						</h2>
-					</div>
-				</div>
-			</div>
-		);
-	} else if (counter.length === 4) {
-		return (
-			<div className="container mt-5">
-				<div className="card-deck">
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<div className="card-body">
-							<i
-								className="far fa-clock mt-5"
-								style={{ fontSize: "10rem" }}
-							/>
-						</div>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "8rem" }}>
-							{counter[0]}
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "7rem" }}>
-							{counter[1]}
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10rem" }}>
-						<h2 className="card-title" style={{ fontSize: "7rem" }}>
-							{counter[2]}
-						</h2>
-					</div>
-					<div
-						className="card text-center"
-						style={{ height: "10 rem" }}>
-						<h2 className="card-title" style={{ fontSize: "7rem" }}>
-							{counter[3]}
-						</h2>
-					</div>
-				</div>
-			</div>
-		);
-	}
+			<div className="four">{props.digitFour % 10}</div>
+			<div className="three">{props.digitThree % 10}</div>
+			<div className="two">{props.digitTwo % 10}</div>
+			<div className="one">{props.digitOne % 10}</div>
+		</div>
+	);
+}
+SecCounter.propTypes = {
+	digitFour: PropTypes.number,
+	digitThree: PropTypes.number,
+	digitTwo: PropTypes.number,
+	digitOne: PropTypes.number
 };
+
+let counter = 0;
+setInterval(function() {
+	const four = Math.floor(counter / 1000);
+	const three = Math.floor(counter / 100);
+	const two = Math.floor(counter / 10);
+	const one = Math.floor(counter / 1);
+	console.log(four, three, two, one);
+	//render your react application
+	counter++;
+	ReactDOM.render(
+		<SecCounter
+			digitOne={one}
+			digitTwo={two}
+			digitThree={three}
+			digitFour={four}
+		/>,
+		document.querySelector("#app")
+	);
+}, 1000);
+
+export default SecCounter;
